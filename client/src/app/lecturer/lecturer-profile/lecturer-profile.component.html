@@ -1,0 +1,96 @@
+<div class="my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item">
+        <a routerLink="" class="text-secondary">
+          <fa name="home"></fa> Home
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a class="text-warning">
+          <fa name="user"></fa>
+          profile
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+
+<div class="container mb-2">
+  <div class="card">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-5 mb-2">
+          <div class="card shadow">
+            <div class="card-body">
+              <img src="assets/avatar.png" alt="avatar" class="img-fluid">
+              <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <input type="text" class="form-control custom" placeholder="First Name" name="firstname"
+                    [(ngModel)]="userProfile.firstname" required />
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control custom" placeholder="Last Name" name="lastname"
+                    [(ngModel)]="userProfile.lastname" required />
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control custom" placeholder="Other Names" name="othernames"
+                    [(ngModel)]="userProfile.othernames" required />
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control custom" placeholder="Email Address" name="emailAddress"
+                    [value]="userProfile.emailAddress" readonly />
+                </div>
+                <div class="form-group">
+                  <select class="form-control custom custom-select" name="deptId" [(ngModel)]="userProfile.deptId"
+                    required>
+                    <option [value]="department.id" *ngFor="let department of departments">{{department.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-warning custom btn-block"
+                    [disabled]="userForm.invalid">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-7 mb-2">
+          <div class="card shadow">
+            <div class="card-body">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    Change Password
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <form #userPwdForm="ngForm" (ngSubmit)="onChangePassword()">
+                    <div class="form-group">
+                      <label for="new_password">New Password</label>
+                      <input type="password" name="password" class="form-control custom form-input" id="new_password"
+                        [(ngModel)]="userPassword.password" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="confirm_password">Confirm New Password</label>
+                      <input type="password" name="confirmpwd" class="form-control custom form-input"
+                        id="confirm_password" [(ngModel)]="userPassword.confirmpwd" required />
+                    </div>
+                    <div class="form-group text-center">
+                      <button type="submit" class="btn btn-warning custom"
+                        [disabled]="userPassword.confirmpwd !== userPassword.password">
+                        <fa name="key"></fa>
+                        Change
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

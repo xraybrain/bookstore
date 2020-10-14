@@ -1,0 +1,163 @@
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar class="col-12 col-md-3 col-lg-2"></app-sidebar>
+    <div class="col-12 col-md-9 col-lg-10">
+      <div class="row my-3" *ngIf="summary">
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+          <div class="card bg-warning">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3>Sales</h3>
+                <fa name="money fa-2x text-white"></fa>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <a routerLink="/admin/orders" class="btn p-0 m-0">
+                  <fa name="info-circle"></fa>
+                </a>
+                <h5>
+                  <span>NGN</span>
+                  {{summary.totalPayments | number}}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+          <div class="card bg-warning">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3>Books</h3>
+                <fa name="book fa-2x text-white"></fa>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <a routerLink="/admin/books" class="btn p-0 m-0">
+                  <fa name="info-circle"></fa>
+                </a>
+                <h5>
+                  {{summary.totalBooks | number}}
+                </h5>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+          <div class="card bg-warning">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3>Students</h3>
+                <fa name="users fa-2x text-white"></fa>
+              </div>
+            </div>
+            <div class="card-footer text-right">
+              <div class="d-flex justify-content-between align-items-center">
+                <a routerLink="/admin/students" class="btn p-0 m-0">
+                  <fa name="info-circle"></fa>
+                </a>
+                <h5>
+                  {{summary.totalStudents | number}}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+          <div class="card bg-warning">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3>Lecturers</h3>
+                <fa name="users fa-2x text-white"></fa>
+              </div>
+            </div>
+            <div class="card-footer text-right">
+              <div class="d-flex justify-content-between align-items-center">
+                <a routerLink="/admin/lecturers" class="btn p-0 m-0">
+                  <fa name="info-circle"></fa>
+                </a>
+                <h5>
+                  {{summary.totalLecturers | number}}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3" *ngIf="notifications">
+        <div class="col-12">
+          <div class="card bg-light">
+            <div class="card-header">
+              <h5 class="">
+                Notifications
+                <fa name="bell text-warning"></fa>
+                <span class="badge badge-danger notify-badge">
+                  {{notifications.length}}
+                </span>
+              </h5>
+            </div>
+            <div class="card-body">
+              <div [class]="'alert alert-' + notification.type" *ngFor="let notification of notifications;">
+                <a class="close" (click)="deleteNotification(notification.id)" data-dismiss="alert">
+                  <fa name="trash text-danger"></fa>
+                </a>
+                {{notification.content}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mb-3" *ngIf="notifications">
+        <div class="col-12">
+          <div class="card bg-light">
+            <div class="card-header">
+              <h5 class="">
+                Unactivated Lecturer Accounts
+                <fa name="user text-warning"></fa>
+              </h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-hover text-muted">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let account of unActivatedAccounts; index as i;">
+                    <td>{{i + 1}}.</td>
+                    <td>
+                      {{account.lastname}}
+                      {{account.firstname}}
+                      {{account.othernames}}
+                    </td>
+                    <td>
+                      {{account.emailAddress}}
+                    </td>
+                    <td>
+                      {{account.Department.name}}
+                    </td>
+                    <td>
+                      <button class="btn btn-success btn-sm" (click)="onActivate(account)">
+                        activate
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

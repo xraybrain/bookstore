@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <label class="close" aria-label="close" (click)="activeModal.dismiss('Cross click')">
+    <fa name="times fa-1x"></fa>
+  </label>
+</div>
+
+<div class="modal-body">
+  <p class="text-center">{{message}}</p>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-success mr-2" (click)="activeModal.close('continue')">Continue</button>
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('cancel')">Cancel</button>
+</div>

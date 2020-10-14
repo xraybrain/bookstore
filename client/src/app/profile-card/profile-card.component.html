@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <label class="close" aria-label="close" (click)="activeModal.dismiss('Cross click')">
+    <fa name="times fa-1x"></fa>
+  </label>
+</div>
+
+<div class="modal-body">
+  <div class="card">
+    <div class="card-header bg-warning">
+
+    </div>
+    <div class="card-body text-center">
+      <p class="text-center">
+        <img [src]="'assets/avatar.png'" alt="profile pics" class="img-fluid avatar img-circle"
+          [ngStyle]="{'height': '250px', 'width': '250px'}">
+      </p>
+      <h4 class="my-2 text-capitalize">{{profile.lastname}} {{profile.firstname}} {{profile.othernames}}</h4>
+      <p class="mb-2" *ngIf="profile.matricNo">
+        <span class="badge badge-dark">
+          {{profile.matricNo}}
+        </span>
+      </p>
+      <p class="mb-2">
+        <span class="badge badge-dark">
+          {{profile.Department.name}}
+        </span>
+      </p>
+      <p class="mb-2">
+        <span class="badge badge-dark">
+          {{profile.emailAddress}}
+        </span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-info" (click)="activeModal.close('cancel')">Close</button>
+</div>

@@ -1,0 +1,370 @@
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar class="col-12 col-md-3 col-lg-2"></app-sidebar>
+    <div class="col-12 col-md-9 col-lg-10">
+      <div class="row my-3">
+        <div class="col-12 col-sm-6 mb-2">
+          <button class="btn btn-warning" data-toggle="collapse" data-target="#author-manager">
+            <fa name="cog"></fa>
+            Manage Authors
+          </button>
+        </div>
+        <div class="col-12 col-sm-6 mb-2 text-md-right">
+          <button class="btn btn-warning" data-toggle="modal" data-target="#new-book-modal">
+            <fa name="plus"></fa>
+            New Book
+          </button>
+        </div>
+        <div class="col-12">
+          <div id="author-manager" class="collapse mt-2">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">
+                  Authors Manager
+                </h5>
+              </div>
+              <div class="card-body">
+                <select name="" id="" #authorListManager class="form-control custom-select">
+                  <option value="">Book Authors</option>
+                  <option [value]="author.id" *ngFor="let author of authorList">
+                    {{author.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btn-outline-success mr-2 mb-2" data-toggle="modal" data-target="#new-author">
+                  <fa name="plus"></fa>
+                  add
+                </button>
+                <button class="btn btn-outline-info mr-2 mb-2" data-toggle="modal" data-target="#edit-author"
+                  (click)="initAuthorEdit({id: authorListManager.selectedOptions[0].value, name: authorListManager.selectedOptions[0].text})">
+                  <fa name="edit"></fa>
+                  edit
+                </button>
+                <button class="btn btn-outline-danger mr-2 mb-2" data-toggle="modal" data-target="#delete-author"
+                  (click)="initAuthorDelete(authorListManager.selectedOptions[0].value)">
+                  <fa name="trash"></fa>
+                  delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <table class="table table-hover table-striped text-muted">
+                <thead>
+                  <tr>
+                    <th>
+                      SN
+                    </th>
+                    <th>
+                      Title
+                    </th>
+                    <th>
+                      Price (NGN)
+                    </th>
+                    <th>
+                      Author(s)
+                    </th>
+                    <th>
+                      In Stock
+                    </th>
+                    <th>
+                      <fa name="cog"></fa>
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let book of books;index as i;">
+                    <td>{{i+1}}.</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.price | number}}</td>
+                    <td>
+                      <select class="form-control">
+                        <option value="" *ngFor="let author of book.authors">{{author.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button *ngIf="book.inStock" class="btn btn-sm btn-success">
+                        <fa name="check"></fa>
+                      </button>
+                      <button *ngIf="!book.inStock" class="btn btn-sm btn-danger">
+                        <fa name="times"></fa>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="dropdown">
+                        <a href="" data-toggle="dropdown" class="btn btn-sm btn-outline-secondary">
+                          more
+                          <fa name="chevron-down"></fa>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <button class="dropdown-item" (click)="open(book)">
+                            <fa name="edit mr-2"></fa>
+                            Edit
+                          </button>
+                          <button class="dropdown-item" (click)="onDeleteBook(book.id)">
+                            <fa name="trash mr-2"></fa>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="new-book-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted">
+          <fa name="plus-circle text-danger"></fa>
+          New Book
+        </h5>
+        <a href="#" class="close" data-dismiss="modal" #newBookModal>
+          &times;
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <div class="col-12 col-sm-9 col-md-8 col-lg-6 mx-auto">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="text-muted">Book Cover Page</h5>
+              </div>
+              <div class="card-body">
+
+                <img *ngIf="selectedFile && selectedFile.src" [src]="selectedFile.src" alt="" srcset=""
+                  class="img-fluid img-thumbnail">
+              </div>
+              <div class="card-footer">
+                <input type="file" #fileInput class="d-none" (change)="onFileChanged(fileInput)">
+                <button class="btn btn-outline-warning mr-2" (click)="fileInput.click()">
+                  Select Cover Page
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+
+          <form #newBookForm="ngForm" action="" (ngSubmit)="onSubmitNewBook()">
+            <input type="hidden" name="coverPage" [(ngModel)]="newBook.coverPage" required>
+            <div class="form-group">
+              <input type="text" placeholder="Title" name="title" #title="ngModel" [(ngModel)]="newBook.title"
+                class="form-control custom form-input" required minlength="5" maxlength="100" />
+            </div>
+            <div class="form-group">
+              <textarea type="text" placeholder="Description..." name="description" #description="ngModel"
+                [(ngModel)]="newBook.description" class="form-control custom form-input" required minlength="10"
+                maxlength="300" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="number" placeholder="Price" name="price" [(ngModel)]="newBook.price"
+                class="form-control custom form-input" required pattern="^[0-9]{3,}$" />
+            </div>
+            <div class="form-group input-group">
+              <select name="authors" class="form-control form-input custom custom-select" #authorSelect
+                [(ngModel)]="newBook.authors" required>
+                <option value="">Select book author</option>
+                <option [value]="author.id" *ngFor="let author of authorList">{{author.name}}</option>
+              </select>
+
+              <div class="input-group-append">
+                <button type="button" class="btn btn-outline-success custom"
+                  (click)="addAuthor({id: authorSelect.selectedOptions[0].value, name: authorSelect.selectedOptions[0].text})">
+                  <fa name="plus mr-1"></fa>
+                  add
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="card">
+                <div class="card-header p-1">
+                  <h5 class="text-muted text-center">
+                    Book Author(s)
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="alert bg-light" *ngFor="let author of selectedAuthors; index as i">
+                    <a class="close" (click)="deleteAuthor(i)">
+                      <fa name="times"></fa>
+                    </a>
+                    <p>{{author.name}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <select name="lecturerId" class="form-control form-input custom custom-select"
+                [(ngModel)]="newBook.lecturerId" required>
+                <option value="">Select supplier</option>
+                <option [value]="lecturer.id" *ngFor="let lecturer of lecturerList">
+                  {{lecturer.firstname}} {{lecturer.lastname}}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-success custom btn-block" [disabled]="newBookForm.invalid">
+                Save Book
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="new-author">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted">
+          <fa name="plus-circle text-danger"></fa>
+          New Author
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form action="" #newAuthorForm="ngForm" (ngSubmit)="onSubmitNewAuthor(newAuthorForm.value)">
+          <div *ngIf="isSendingRequest" class="text-center">
+            <label>
+              Saving...
+            </label>
+          </div>
+          <div *ngIf="errorMsgOnSaveAuthor" class="text-center alert alert-danger">
+            <label>
+              {{errorMsgOnSaveAuthor}}
+            </label>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control form-input custom text-capitalize" name="name"
+              placeholder="Author Name" [(ngModel)]="newAuthor.name" required pattern="^[a-zA-Z]{3,}.*$"
+              autocomplete="off" />
+          </div>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit" [disabled]="newAuthorForm.invalid">
+              save author
+              <fa name="archive"></fa>
+            </button>
+            <button class="btn btn-danger" data-dismiss="modal">
+              cancel
+              <fa name="times-circle"></fa>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="edit-author">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted">
+          <fa name="edit-circle text-info"></fa>
+          Edit Author
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form action="" #editAuthorForm="ngForm" (ngSubmit)="onUpdateAuthor(editAuthorForm.value)">
+          <div *ngIf="isSendingRequest" class="text-center">
+            <label>
+              Saving...
+            </label>
+          </div>
+          <div *ngIf="errorMsgOnSaveAuthor" class="text-center alert alert-danger">
+            <label>
+              {{errorMsgOnSaveAuthor}}
+            </label>
+          </div>
+
+          <div class="form-group">
+            <input type="hidden" name="id" [(ngModel)]="editAuthor.id" required />
+            <input type="text" class="form-control form-input custom text-capitalize" name="name"
+              placeholder="Author Name" [(ngModel)]="editAuthor.name" required pattern="^[a-zA-Z]{3,}.*$"
+              autocomplete="off" />
+          </div>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit" [disabled]="editAuthorForm.invalid">
+              update author
+              <fa name="archive"></fa>
+            </button>
+            <button class="btn btn-danger" data-dismiss="modal">
+              cancel
+              <fa name="times-circle"></fa>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="delete-author">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted">
+          <fa name="trash text-danger"></fa>
+          Delete Author
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="alert alert-info text-center" *ngIf="actionStatus">
+          {{actionStatus}}
+        </div>
+        <div class="alert alert-info" *ngIf="isSendingRequest">
+          Deleting ...
+        </div>
+        <p class="text-center" *ngIf="actionStatus==''">Are you sure you want to delete author?</p>
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 d-flex justify-content-between">
+          <button class="btn btn-outline-danger" type="button" (click)="onDeleteAuthor()">
+            delete
+            <fa name="trash"></fa>
+          </button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal">
+            cancel
+            <fa name="times-circle"></fa>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #EditBook>
+  <app-edit-book-modal></app-edit-book-modal>
+</ng-template>
+<ng-template #DeleteWarning>
+  <app-warning-dialog></app-warning-dialog>
+</ng-template>

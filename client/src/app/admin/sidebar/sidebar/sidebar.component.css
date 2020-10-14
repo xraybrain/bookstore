@@ -1,0 +1,16 @@
+.menu-widget-side {
+  padding: 0px;
+}
+
+.menu-widget-side li a fa {
+  color: #fabc10;
+}
+
+.menu-widget-side li a {
+  text-decoration: none;
+  color: #070202;
+  margin-bottom: 5px;
+}
+.menu-widget-side li a:hover {
+  border-bottom: 2px solid#fabc10;
+}

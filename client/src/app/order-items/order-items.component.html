@@ -1,0 +1,42 @@
+<div class="my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item">
+        <a routerLink="" class="text-secondary">
+          <fa name="home"></fa> Home
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a routerLink="/orders/" class="text-secondary">
+          <fa name="list-alt"></fa>
+          my orders
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a routerLink="" class="text-warning">
+          <fa name="list"></fa>
+          order items
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container my-3">
+  <h3>Order Items</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10 col-sm-6 col-md-4 col-lg-3 mx-auto mb-2" *ngFor="let item of orderItems">
+          <div class="card">
+            <img [src]="item.Book.coverPage" alt="book coverpage" class="card-img-top" [ngStyle]="{'height': '250px'}">
+            <div class="card-footer">
+              <p class="border-bottom">Price: {{item.Book.price}}</p>
+              <p class="border-bottom">Qty: {{item.quantity}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

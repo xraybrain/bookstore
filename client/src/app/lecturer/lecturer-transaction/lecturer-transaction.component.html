@@ -1,0 +1,84 @@
+<div class="my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item">
+        <a routerLink="/" class="text-secondary">
+          <fa name="home"></fa> Home
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a routerLink="/lecturer/books" class="text-secondary">
+          <fa name="book"></fa>
+          books
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a class="text-warning">
+          <fa name="list-alt"></fa>
+          transactions
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container my-3">
+  <div class="card">
+    <div class="card-header">
+      <form action="">
+        <div class="form-group input-group">
+          <input type="search" class="form-control" name="searchquery">
+          <span class="input-group-append">
+            <button class="input-group-text">
+              Search
+              <fa name="search ml-1"></fa>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="card-body scrollable scroll-x">
+      <table class="table table-hover text-muted">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Student Name</th>
+            <th>Matric No</th>
+            <th>
+              Payment Reference
+            </th>
+            <th>
+              Payment Date
+            </th>
+            <th>
+              Order Status
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions; index as i;">
+            <td>
+              {{i+1}}.
+            </td>
+            <td class="text-capitalize">
+              {{transaction.Order.Student.firstname}}
+              {{transaction.Order.Student.lastname}}
+            </td>
+            <td class="text-uppercase">
+              {{transaction.Order.Student.matricNo}}
+            </td>
+            <td>
+              {{transaction.Order.paymentRef}}
+            </td>
+            <td>
+              {{transaction.Order.createdAt | date}}
+            </td>
+            <td>
+              {{transaction.Order.status}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<a [routerLink]="'/book/detail/'+book.id">
+
+  <div class="card border-0">
+    <img [src]="book.coverPage" alt="book" class="card-img-top img-fluid" />
+    <div class="card-footer text-center bg-white">
+      <p class="textbox" [title]="book.title" data-tooltip="ON">
+        {{book.title}}
+      </p>
+      <span class="font-weight-bold">&#8358; {{book.price}}</span>
+    </div>
+  </div>
+</a>

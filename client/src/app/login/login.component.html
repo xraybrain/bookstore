@@ -1,0 +1,58 @@
+<div class="container my-5">
+  <div class="col-12 col-md-8 col-lg-5 mx-auto">
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+      <fieldset>
+        <legend>Login console</legend>
+        <div *ngIf="isContactingServer" class="text-center">
+          <fa name="spinner fa-spin fa-2x"></fa>
+        </div>
+
+        <div class="my-3">
+          <div class="form-group">
+            <label for="user-type">Login As:</label>
+            <select name="userType" id="user-type" class="form-control custom custom-select"
+              [(ngModel)]="model.userType">
+              <option value="admin">Admin</option>
+              <option value="student" selected>Student</option>
+              <option value="lecturer">Lecturer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <span class="form-control custom">
+              <fa name="envelope fa-1x"></fa>
+              <input type="text" class="border-0" placeholder="Email Address" name="emailAddress"
+                #emailAddress="ngModel" [(ngModel)]="model.emailAddress" autocomplete="off" required>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <span class="form-control custom">
+              <fa name="lock fa-1x"></fa>
+              <input type="password" class="border-0" placeholder="Password" name="password" #password="ngModel"
+                [(ngModel)]="model.password" required>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-group text-center mt-3">
+        <button type="submit" class="btn btn-block custom ghost">
+          Account Login
+        </button>
+
+        <p class="mt-3">
+          Don't have an account?
+          <a routerLink="/signup/" class="btn custom full">Sign Up</a>
+        </p>
+
+        <p class="mt-4">
+          <a href="" class="text-secondary">
+            Forgotten account password?
+          </a>
+        </p>
+      </div>
+
+    </form>
+  </div>
+</div>

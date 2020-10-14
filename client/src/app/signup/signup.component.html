@@ -1,0 +1,111 @@
+<div class="container my-5">
+
+  <div class="card col-11 col-md-10 mx-auto">
+    <div class="card-body">
+
+      <form action="" [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+        <div class="alert alert-danger text-center" *ngIf="serverFeedback">
+          {{serverFeedback.message}}
+        </div>
+        <div class="title text-center d-flex justify-content-center mb-3">
+          <div class="d-flex align-items-center">
+            <span class="triangle-left"></span>
+            <span class="circle"></span>
+            <span class="circle"></span>
+          </div>
+          <h5 class="mx-2 mx-sm-3 mx-md-4">Account Signup</h5>
+          <div class="d-flex align-items-center">
+            <span class="circle"></span>
+            <span class="circle"></span>
+            <span class="triangle-right"></span>
+          </div>
+        </div>
+
+        <div class="row my-md-3">
+          <div class="col-12 col-sm-6 col-lg-4 mx-auto">
+            <div class="form-group">
+              <input type="text" class="form-control custom form-input text-capitalize" placeholder="Firstname"
+                formControlName="firstname">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4 mx-auto">
+            <div class="form-group">
+              <input type="text" class="form-control custom form-input text-capitalize" placeholder="Othernames"
+                formControlName="othernames">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4 mx-auto">
+            <div class="form-group">
+              <input type="text" class="form-control custom form-input text-capitalize" placeholder="Lastname"
+                formControlName="lastname">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row my-md-3">
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="form-group">
+              <select class="form-control custom custom-select form-input" formControlName="deptId"
+                placeholder="Select">
+                <option value="">Select Department</option>
+                <option [value]="dept.id" *ngFor="let dept of departments">{{dept.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="form-group">
+              <input type="text" class="form-control custom form-input" placeholder="Email Address"
+                formControlName="emailAddress">
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-md-3">
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="form-group">
+              <input type="password" class="form-control custom form-input" placeholder="Password"
+                formControlName="password">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="form-group">
+              <input type="password" class="form-control custom form-input" placeholder="Confirm Password"
+                formControlName="confirmPassword" [ngClass]="{'error': !pwdMatched}" (keyup)="isMatch()">
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-md-3">
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="form-check">
+              <label for="is-student" class="form-check-label">
+                <input type="checkbox" class="form-check-input" id="is-student" checked
+                  (change)="enableMatricNoField()" />
+                Are you a student?
+              </label>
+            </div>
+          </div>
+
+
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="form-group">
+              <input type="text" class="form-control custom form-input text-uppercase"
+                placeholder="Matric No (Format: 2020/ND/CST/77000)" [hidden]="!isStudent" [required]="isStudent"
+                formControlName="matricNo">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text-center">
+          <button type="submit" class="btn custom full" [disabled]="userProfileForm.invalid || !pwdMatched">Create
+            Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<form #searchBar="ngForm" action="" class="mb-3" (ngSubmit)="onSubmit()">
+  <div class="form-group input-group" [ngStyle]="{position: 'relative'}">
+    <input type="search" name="searchquery" id="searchquery" class="form-control"
+      placeholder="Search for a book by (title)" [(ngModel)]="model.searchquery" #searchquery="ngModel"
+      autocomplete="off" />
+
+    <span class="input-group-append">
+      <button type="submit" class="input-group-text">
+        Search
+        <fa name="search ml-2"></fa>
+      </button>
+    </span>
+  </div>
+
+</form>

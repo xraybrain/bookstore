@@ -1,0 +1,267 @@
+/* You can add global styles to this file, and also import other style files */
+.navbar-custom {
+  border-bottom: 2px solid #000;
+  box-shadow: 0px 4px 5px #eee;
+  padding: 0px 15px !important;
+}
+
+.menu-bar li {
+  padding: 2px 15px;
+  border-bottom: 2px solid transparent;
+}
+.menu-bar li:hover {
+  border-bottom: 2px solid #8f2323;
+}
+
+.navbar-toggler-custom {
+  padding: 3px 2px !important;
+}
+
+.line-1,
+.line-2,
+.line-3 {
+  border: 2px solid #fff;
+  margin: 3px;
+  display: block;
+  width: 30px;
+  transition: all ease-in-out 0.6s;
+}
+
+.open .line-1 {
+  transform: translate(0px, 7px) rotate(45deg);
+}
+.open .line-2 {
+  visibility: hidden;
+}
+
+.open .line-3 {
+  transform: translate(-1px, -7px) rotate(-45deg);
+}
+
+/* main-header style */
+.main-header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.65)),
+    url(img/banner.jpg);
+  min-height: 70vh;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  border-bottom-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+}
+
+/* seach-pane style*/
+.search-pane {
+  position: relative;
+}
+/* searchbar style*/
+.search-bar {
+  border-radius: 20px !important;
+}
+.search-bar::placeholder {
+  padding-left: 20px;
+}
+.search-bar + label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 5px;
+  color: #f5a107;
+  transition: all ease-in-out 0.6s;
+}
+.search-bar:focus + label {
+  display: none;
+}
+
+.search-bar:focus .search-bar::placeholder {
+  padding-left: 0px;
+}
+
+/** btn.custom style **/
+.btn.custom {
+  border-radius: 20px;
+}
+.btn.custom.full {
+  background: #f3c705;
+  color: #000;
+  box-shadow: 0px 2px 3px rgb(201, 55, 55);
+  outline: none;
+  font-weight: 400;
+}
+.btn.custom.full:focus {
+  box-shadow: inset 0px 0px 5px #c93737;
+}
+
+.btn.custom.ghost {
+  border: 2px solid #f3c705;
+  color: #f3c705;
+  box-shadow: 0px 2px 3px rgb(201, 55, 55);
+}
+
+.triangle-left {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5rem solid #f5a107;
+
+  display: inline-block;
+}
+.triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5rem solid #f5a107;
+
+  display: inline-block;
+}
+.circle {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #f5a107;
+  display: inline-block;
+  margin: 1px;
+}
+
+.form-control.custom {
+  border-radius: 20px;
+}
+
+.form-control.custom > input {
+  width: 93%;
+}
+.form-control.custom > input:focus {
+  border: none;
+  outline: none;
+}
+
+.form-control.custom fa {
+  margin-right: 3px;
+  color: #f5a107;
+}
+
+.bg-black {
+  background-color: #101313;
+}
+
+app-book-item {
+  transition: all ease-in-out 0.4s;
+}
+app-book-item:hover {
+  box-shadow: 5px 5px 10px #eee;
+  transform: translateY(-2px);
+}
+
+.book-pane img {
+  height: 230px;
+}
+.book-pane a {
+  text-decoration: none;
+  color: #000;
+  transition: all ease-in-out 0.4s;
+}
+.book-pane a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.textbox {
+  margin: 1px !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/** wrapper for containers **/
+.wrapper {
+  min-height: 60vh;
+}
+
+/** paper **/
+.paper {
+  background-color: #f1f2f6;
+  width: 100%;
+  min-height: 100px;
+  box-shadow: 2px 2px 5px #888;
+}
+
+/** img-fluid custom **/
+.img-fluid.custom {
+  height: 450px;
+  border-radius: 5px;
+}
+
+.img-thumb {
+  width: 50px;
+  height: 50px;
+}
+
+.scroll-x {
+  overflow-x: scroll;
+}
+.scroll-x table {
+  width: 1000px;
+}
+
+.wrapper {
+  min-height: 80vh;
+}
+
+.form-input.ng-touched.ng-invalid,
+.error {
+  border: 1px solid red !important;
+}
+.form-input.ng-touched.ng-valid {
+  border: 1px solid green;
+}
+
+.scrollable {
+  min-height: 65vh;
+  height: 65vh;
+  max-height: 65vh;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 995px) {
+  .hero-textbox h3 {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media screen and (max-width: 795px) {
+  .hero-textbox h3 {
+    font-size: 2rem !important;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .main-header {
+    height: 80vh;
+  }
+  .hero-textbox h3 {
+    font-size: 1.7rem !important;
+    font-weight: 500;
+  }
+
+  .btn {
+    font-size: 1rem !important;
+  }
+
+  .form-control.custom > input {
+    width: 85%;
+  }
+
+  .img-fluid.custom {
+    height: 350px;
+  }
+  .scroll-x table {
+    width: 800px;
+  }
+
+  .scrollable table {
+    width: 600px;
+  }
+}

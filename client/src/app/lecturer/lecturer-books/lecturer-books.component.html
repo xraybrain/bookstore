@@ -1,0 +1,68 @@
+<div class="my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item">
+        <a routerLink="/" class="text-secondary">
+          <fa name="home"></fa> Home
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a class="text-warning">
+          <fa name="book"></fa>
+          books
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container my-3">
+  <div class="card">
+    <div class="card-header">
+      <form action="">
+        <div class="form-group input-group">
+          <input type="search" class="form-control" name="searchquery">
+          <span class="input-group-append">
+            <button class="input-group-text">
+              Search
+              <fa name="search ml-1"></fa>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="card-body scrollable">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cover Page</th>
+            <th>Title</th>
+            <th>
+              Price (NGN)
+            </th>
+            <th>
+              Action
+              <fa name="cog ml-2 text-warning"></fa>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books;index as i">
+            <td>{{i+1}}</td>
+            <td>
+              <img [src]="book.coverPage" alt="book cover page" class="img-fluid img-thumb">
+            </td>
+            <td>{{book.title}}</td>
+            <td>{{book.price}}</td>
+            <td>
+              <a [routerLink]="'/lecturer/transactions/'+ book.id" class="btn btn-warning btn-sm">
+                transactions
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

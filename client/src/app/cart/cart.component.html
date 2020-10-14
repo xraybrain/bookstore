@@ -1,0 +1,92 @@
+<div class="my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item">
+        <a routerLink="" class="text-secondary">
+          <fa name="home"></fa> Home
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a routerLink="/cart/" class="text-warning">
+          <fa name="shopping-cart"></fa>
+          cart
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container my-3">
+  <div class="card shadow border-0">
+    <div class="card-header">
+      <div class="d-flex align-items-center">
+        <fa name="shopping-cart fa-3x mr-3 text-warning"></fa>
+        <h4>Shopping Cart ({{totalItems}})</h4>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card">
+        <div class="card-body scroll-x">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Cover Page</th>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+                <th>
+                  Action
+                  <fa name="cog"></fa>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cart">
+                <td>
+                  <img [src]="item.Book.coverPage" alt="book cover page" class="img-thumbnail img-thumb">
+                </td>
+                <td>
+                  {{item.Book.title}}
+                </td>
+                <td>
+                  {{item.quantity}}
+                </td>
+                <td>
+                  {{item.Book.price}}
+                </td>
+                <td>
+                  {{item.quantity * item.Book.price}}
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-danger" (click)="onDelete(item.id)">
+                    <fa name="trash"></fa>
+                    remove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="shadow col-10 col-md-5 p-2  mx-auto ml-lg-auto">
+            <span class="font-weight-bold">Total</span>: {{totalPrice}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <a routerLink="/books" class="btn btn-outline-warning">
+        Continue Shopping
+        <fa name="shopping-cart"></fa>
+      </a>
+      <a routerLink="/checkout/" class="btn btn-warning" [hidden]="!cart || cart.length ==0">
+        Checkout
+        <fa name="exchange"></fa>
+      </a>
+    </div>
+  </div>
+</div>
+
+<ng-template>
+  <app-warning-dialog></app-warning-dialog>
+</ng-template>

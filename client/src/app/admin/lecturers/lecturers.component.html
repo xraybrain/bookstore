@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar class="col-12 col-md-3 col-lg-2"></app-sidebar>
+    <div class="col-12 col-md-9 col-lg-10">
+      <div class="mt-3">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/admin/dashboard">dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+            lecturers
+          </li>
+        </ul>
+      </div>
+      <div class="card my-3">
+        <div class="card-header bg-white">
+          <form action="" #searchLecturer="ngForm" (ngSubmit)="onSearch(searchLecturer.value)">
+            <input type="text" name="searchquery" class="form-control" placeholder="search for lecturer by (name)"
+              [(ngModel)]="searchquery" autocomplete="off" />
+          </form>
+        </div>
+        <div class="card-body scrollable p-0">
+          <table class="table table-hover table-striped">
+            <caption class="text-uppercase">Lecturers Account</caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Other Names</th>
+                <th>
+                  <fa name="user"></fa> Profile
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let lecturer of lecturers; index as i;">
+                <td>{{i+1}}.</td>
+                <td>
+                  {{lecturer.lastname}}
+                </td>
+                <td>
+                  {{lecturer.firstname}}
+                </td>
+                <td>
+                  {{lecturer.othernames}}
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-success" (click)="onViewProfile(lecturer)">
+                    Profile
+                    <fa name="user"></fa>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

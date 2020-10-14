@@ -1,0 +1,38 @@
+<div class="my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item">
+        <a routerLink="" class="text-secondary">
+          <fa name="home"></fa> Home
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a routerLink="/books/" class="text-warning">
+          <fa name="book"></fa>
+          books
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid my-3 wrapper">
+  <div class="col-11 col-md-10 col-lg-9 mx-auto my-5">
+    <form #searchBar="ngForm" action="" class="mb-3" (ngSubmit)="onSubmit()">
+      <div class="form-group input-group" [ngStyle]="{position: 'relative'}">
+        <input type="search" name="searchquery" id="searchquery" class="form-control"
+          placeholder="Search for a book by (title)" [(ngModel)]="model.searchquery" #searchquery="ngModel"
+          autocomplete="off" />
+
+        <span class="input-group-append">
+          <button type="submit" class="input-group-text">
+            Search
+            <fa name="search ml-2"></fa>
+          </button>
+        </span>
+      </div>
+
+    </form>
+  </div>
+  <app-book-list [books]="books"></app-book-list>
+</div>

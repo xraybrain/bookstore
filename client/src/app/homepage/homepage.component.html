@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <!-- Header -->
+  <header class="row main-header">
+    <div class="col-10 col-md-8 mx-auto hero-textbox py-5">
+
+      <h3 class="display-4 text-light text-center">
+        Our services are selfless... <br> ...Our customers satisfaction is our priority
+      </h3>
+
+      <div class="text-center py-5">
+        <a routerLink="/signup" *ngIf="!userStatus" class="btn custom full mx-2 mb-2">Get Started</a>
+        <a routerLink="/books" class="btn custom ghost mx-2 mb-2">Book Collections</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Services -->
+  <div class="py-3">
+    <div class="title text-center  mb-3">
+      <div class="d-flex justify-content-center">
+        <div class="d-flex align-items-center">
+          <span class="triangle-left"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+        <h5 class="mx-2 mx-sm-3 mx-md-4">Our Services</h5>
+        <div class="d-flex align-items-center">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="triangle-right"></span>
+        </div>
+      </div>
+      <p>We offer the following services to our customers.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-10 col-md-4 mx-auto text-center mb-2">
+        <div class="text-center">
+          <fa name="credit-card fa-3x text-warning"></fa>
+          <h5>Web Payment/POS</h5>
+        </div>
+        Our customers can make complete all purchases online through this site and this includes paying for their
+        products purchased from the comfort of ther home
+      </div>
+
+      <div class="col-10 col-md-4 mx-auto text-center mb-2">
+        <div class="text-center">
+          <fa name="truck fa-3x text-warning"></fa>
+          <h5>Door Step Delivery</h5>
+        </div>
+        In order to ensure that our customers are satisfied, we offer free door step delivery for purchases at NGN
+        10,000
+        and above.
+      </div>
+
+      <div class="col-10 col-md-4 mx-auto text-center mb-2">
+        <div class="text-center">
+          <fa name="clock-o fa-3x text-warning"></fa>
+          <h5>24/7</h5>
+        </div>
+        We are always at our customer's service. we operate round the clock to ensure a fulltime service is offered to
+        our customers.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Book Collections -->
+  <div class="py-3">
+
+    <div class="title text-center d-flex justify-content-center mb-3">
+      <div class="d-flex align-items-center">
+        <span class="triangle-left"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+      </div>
+      <h5 class="mx-2 mx-sm-3 mx-md-4">Our Latest Book Collections</h5>
+      <div class="d-flex align-items-center">
+        <span class="circle"></span>
+        <span class="circle"></span>
+        <span class="triangle-right"></span>
+      </div>
+    </div>
+
+    <div>
+      <!-- Book Lists-->
+      <app-book-list [books]="books"></app-book-list>
+    </div>
+  </div>
+</div>
