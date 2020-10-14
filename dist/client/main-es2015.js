@@ -3608,7 +3608,7 @@ __webpack_require__.r(__webpack_exports__);
 let CoreService = class CoreService {
     constructor(http) {
         this.http = http;
-        this.host = "http://localhost:4100/";
+        this.host = "";
     }
     getData(apiURL) {
         return this.http.get(`${this.host}${apiURL}`);

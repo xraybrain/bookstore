@@ -6252,7 +6252,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _classCallCheck(this, CoreService);
 
         this.http = http;
-        this.host = "http://localhost:4100/";
+        this.host = "";
       }
 
       _createClass(CoreService, [{
