@@ -3258,8 +3258,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }), _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModule"], _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_8__["JwtModule"].forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ["localhost:4100"],
-          disallowedRoutes: ["localhost:4100/api/auth/"]
+          allowedDomains: ["ebookshops.herokuapp.com"],
+          disallowedRoutes: ["ebookshops.herokuapp.com/api/auth/"]
         }
       }), angular4_paystack__WEBPACK_IMPORTED_MODULE_9__["Angular4PaystackModule"].forRoot("pk_test_c3cd2b6a8c267691e93f3b29ab8c015061618895")],
       providers: [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbActiveModal"]],
@@ -6252,7 +6252,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _classCallCheck(this, CoreService);
 
         this.http = http;
-        this.host = "http://localhost:4100/";
+        this.host = "";
       }
 
       _createClass(CoreService, [{

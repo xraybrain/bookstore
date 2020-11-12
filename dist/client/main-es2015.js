@@ -1816,8 +1816,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_8__["JwtModule"].forRoot({
                 config: {
                     tokenGetter: tokenGetter,
-                    allowedDomains: ["localhost:4100"],
-                    disallowedRoutes: ["localhost:4100/api/auth/"],
+                    allowedDomains: ["ebookshops.herokuapp.com/"],
+                    disallowedRoutes: ["ebookshops.herokuapp.com/api/auth/"],
                 },
             }),
             angular4_paystack__WEBPACK_IMPORTED_MODULE_9__["Angular4PaystackModule"].forRoot("pk_test_c3cd2b6a8c267691e93f3b29ab8c015061618895"),
@@ -3608,7 +3608,7 @@ __webpack_require__.r(__webpack_exports__);
 let CoreService = class CoreService {
     constructor(http) {
         this.http = http;
-        this.host = "http://localhost:4100/";
+        this.host = "";
     }
     getData(apiURL) {
         return this.http.get(`${this.host}${apiURL}`);
