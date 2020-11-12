@@ -1,6 +1,6 @@
 <div class="container my-5">
 
-  <div class="card col-11 col-md-10 mx-auto">
+  <div class="card col-12 col-md-10 mx-auto shadow">
     <div class="card-body">
 
       <form action="" [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
@@ -8,13 +8,13 @@
           {{serverFeedback.message}}
         </div>
         <div class="title text-center d-flex justify-content-center mb-3">
-          <div class="d-flex align-items-center">
+          <div class="d-sm-flex align-items-center d-none">
             <span class="triangle-left"></span>
             <span class="circle"></span>
             <span class="circle"></span>
           </div>
           <h5 class="mx-2 mx-sm-3 mx-md-4">Account Signup</h5>
-          <div class="d-flex align-items-center">
+          <div class="d-none align-items-center d-sm-flex">
             <span class="circle"></span>
             <span class="circle"></span>
             <span class="triangle-right"></span>

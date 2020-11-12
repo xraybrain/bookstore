@@ -74,12 +74,12 @@
         </div>
       </div>
     </div>
-    <div class="card-footer d-flex justify-content-between">
-      <a routerLink="/books" class="btn btn-outline-warning">
+    <div class="card-footer d-flex justify-content-between flex-wrap">
+      <a routerLink="/books" class="btn btn-outline-warning mb-2">
         Continue Shopping
         <fa name="shopping-cart"></fa>
       </a>
-      <a routerLink="/checkout/" class="btn btn-warning" [hidden]="!cart || cart.length ==0">
+      <a routerLink="/checkout/" class="btn btn-warning mb-2" [hidden]="!cart || cart.length ==0">
         Checkout
         <fa name="exchange"></fa>
       </a>

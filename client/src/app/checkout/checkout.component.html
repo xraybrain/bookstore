@@ -45,8 +45,8 @@
 
       <h4 class="text-muted border-bottom">Order Summary</h4>
       <div class="card">
-        <div class="card-body">
-          <table class="table table-striped table-hover w-100">
+        <div class="card-body scroll-xs-x">
+          <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th>Title</th>
@@ -69,7 +69,7 @@
           </table>
         </div>
         <div class="card-footer">
-          <div class="col-8 mx-auto">
+          <div class="col-12 col-sm-8 mx-auto">
             <angular4-paystack [email]="currentUser.emailAddress" [amount]="totalPrice*100" [ref]="reference"
               [channels]="['card','bank']" [class]="'btn btn-block btn-success'" (close)="paymentCancel()"
               (callback)="paymentDone($event)">

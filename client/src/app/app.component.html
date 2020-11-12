@@ -1,9 +1,15 @@
 <!-- Top NavBar -->
 <nav class="navbar navbar-expand-md navbar-light bg-light text-dark navbar-custom">
   <a routerLink="/" class="navbar-brand">
-    E-BookShop
+    <img src="assets/logo.png" alt="logo" class="logo">
+    Bookshop
   </a>
 
+  <button class="navbar-toggler navbar-toggler-custom  bg-dark" data-toggle="collapse" data-target="#menuPane">
+    <span class="line-1"></span>
+    <span class="line-2"></span>
+    <span class="line-3"></span>
+  </button>
 
   <div class="collapse navbar-collapse" id="menuPane">
 
@@ -20,71 +26,71 @@
           Books
         </a>
       </li>
+      <li class="nav-item dropdown" *ngIf="userStatus">
+        <a href="#" class="nav-link font-weight-bold" data-toggle="dropdown">
+          <fa name="user-circle text-warning"></fa>
+          Account
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" *ngIf="userType == 'Student'">
+          <a routerLink="/student/profile" class="dropdown-item">
+            <fa name="user text-warning" class="mr-2"></fa>
+            Profile
+          </a>
+          <a routerLink="/orders/" class="dropdown-item">
+            <fa name="list-alt text-warning" class="mr-2"></fa>
+            Orders
+          </a>
+          <a class="dropdown-item" (click)="logOut()">
+            <fa name="sign-out text-warning" class="mr-2"></fa>
+            Logout
+          </a>
+        </div>
+
+        <div class="dropdown-menu dropdown-menu-right" *ngIf="userType == 'Lecturer'">
+          <a routerLink="/lecturer/profile" class="dropdown-item">
+            <fa name="user text-warning" class="mr-2"></fa>
+            Profile
+          </a>
+          <a routerLink="/lecturer/books" class="dropdown-item">
+            <fa name="book text-warning" class="mr-2"></fa>
+            Books
+          </a>
+          <a class="dropdown-item" (click)="logOut()">
+            <fa name="sign-out text-warning" class="mr-2"></fa>
+            Logout
+          </a>
+        </div>
+
+        <div class="dropdown-menu dropdown-menu-right" *ngIf="userType == 'Admin'">
+          <a routerLink="/admin/dashboard" class="dropdown-item">
+            <fa name="th text-warning" class="mr-2"></fa>
+            dashboard
+          </a>
+          <a class="dropdown-item" (click)="logOut()">
+            <fa name="sign-out text-warning" class="mr-2"></fa>
+            Logout
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/login" class="nav-link font-weight-bold" data-toggle="dropdown" *ngIf="!userStatus">
+          <fa name="user text-warning"></fa>
+          Login
+        </a>
+      </li>
     </ul>
 
-
-  </div>
-
-  <a routerLink="/login" class="d-block font-weight-bold ml-2 ml-sm-5" data-toggle="dropdown" *ngIf="!userStatus">
-    <fa name="user fa-2x text-warning"></fa>
-  </a>
-  <div class="dropdown" *ngIf="userStatus">
-    <a role="button" class="d-block font-weight-bold ml-2 ml-sm-5" data-toggle="dropdown">
-      <fa name="user-circle fa-2x text-warning"></fa>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" *ngIf="userType == 'Student'">
-      <a routerLink="/student/profile" class="dropdown-item">
-        <fa name="user text-warning" class="mr-2"></fa>
-        Profile
-      </a>
-      <a routerLink="/orders/" class="dropdown-item">
-        <fa name="list-alt text-warning" class="mr-2"></fa>
-        Orders
-      </a>
-      <a class="dropdown-item" (click)="logOut()">
-        <fa name="sign-out text-warning" class="mr-2"></fa>
-        Logout
-      </a>
-    </div>
-
-    <div class="dropdown-menu dropdown-menu-right" *ngIf="userType == 'Lecturer'">
-      <a routerLink="/lecturer/profile" class="dropdown-item">
-        <fa name="user text-warning" class="mr-2"></fa>
-        Profile
-      </a>
-      <a routerLink="/lecturer/books" class="dropdown-item">
-        <fa name="book text-warning" class="mr-2"></fa>
-        Books
-      </a>
-      <a class="dropdown-item" (click)="logOut()">
-        <fa name="sign-out text-warning" class="mr-2"></fa>
-        Logout
-      </a>
-    </div>
-
-    <div class="dropdown-menu dropdown-menu-right" *ngIf="userType == 'Admin'">
-      <a routerLink="/admin/dashboard" class="dropdown-item">
-        <fa name="th text-warning" class="mr-2"></fa>
-        dashboard
-      </a>
-      <a class="dropdown-item" (click)="logOut()">
-        <fa name="sign-out text-warning" class="mr-2"></fa>
-        Logout
-      </a>
-    </div>
   </div>
 
   <a routerLink="/cart" class="ml-2 ml-sm-4" [hidden]="userType == 'Admin' || userType == 'Lecturer'">
-    <fa name="shopping-cart fa-2x text-warning"></fa>
-    <span class="badge badge-danger">
-      {{totalCartItems}}
+    <fa name="shopping-cart text-warning"></fa>
+    <span class="badge badge-danger ml-2">
+      <small>{{totalCartItems}}</small>
     </span>
   </a>
-  <button class="navbar-toggler navbar-toggler-custom  bg-dark" data-toggle="collapse" data-target="#menuPane">
-    <span class="line-1"></span>
-    <span class="line-2"></span>
-    <span class="line-3"></span>
-  </button>
+
 </nav>
 <!-- End of Top NavBar-->
 
@@ -96,7 +102,7 @@
 <footer class="main-footer p-3 bg-black text-light">
   <div class="col-12 text-center">
     <p class="my-2">
-      Online BookShop. All &copy; rights reserved, since 2020
+      Imo State Polytechnic Online BookShop. All &copy; rights reserved, since 2020
     </p>
   </div>
 </footer>
